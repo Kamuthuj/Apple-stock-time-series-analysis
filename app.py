@@ -38,7 +38,7 @@ fig.update_xaxes(
     )
 )
 
-fig.update_layout(width=1800, height=800)
+fig.update_layout(width=1800, height=1000)
 
 # Display the candlestick chart in the app
 st.plotly_chart(fig, use_container_width=True)
