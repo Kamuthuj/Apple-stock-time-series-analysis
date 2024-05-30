@@ -3,13 +3,15 @@ import yfinance as yf
 import plotly.graph_objects as go
 from datetime import date, timedelta
 
-# Setting the start and end dates
-d1 = date.today().strftime("%Y-%m-%d")
-end_date = d1
+# Streamlit app title
+st.title("Apple Stock Price Analysis")
 
-# Calculating the date 365 days ago
-d2 = date.today() - timedelta(days=365)
-start_date = d2.strftime("%Y-%m-%d")
+# Sidebar filters
+st.sidebar.header('Filters')
+
+# Date range selection
+start_date = st.sidebar.date_input("Start date", date.today() - timedelta(days=365))
+end_date = st.sidebar.date_input("End date", date.today())
 
 # Fetching Apple stock data
 data = yf.download('AAPL', start=start_date, end=end_date)
@@ -38,6 +40,6 @@ fig.update_xaxes(
 
 fig.update_layout(width=1800, height=800)
 
-# Streamlit app
-st.title("Apple Stock Price Analysis.")
+# Display the candlestick chart in the app
 st.plotly_chart(fig, use_container_width=True)
+
